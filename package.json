@@ -1,0 +1,23 @@
+{
+  "name": "cosm-os",
+  "version": "1.0.0",
+  "description": "Cosm-OS Loves You",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node -r dotenv/config src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-231/cosm-OS.git"
+  },
+  "author": "Alex231",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-231/cosm-OS/issues"
+  },
+  "homepage": "https://github.com/Alex-231/cosm-OS#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
+  }
+}
