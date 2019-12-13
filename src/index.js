@@ -12,7 +12,7 @@ client.on('message', msg => {
     if (msg.content === '❤️') {
         msg.channel.send('❤️'); 
     }
-    if (msg.content.toLowerCase() === 'i\'m a baa') {
+    if (msg.content.toLowerCase().replace('\'', '') === 'im a baa') {
         msg.channel.send('baa'); 
     }
     console.log(`${msg.author.username}#${msg.author.discriminator}: ${msg.content}`);
