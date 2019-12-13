@@ -8,12 +8,12 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     if (msg.author.id === client.user.id) return;
-    
-    if (msg.content.toLowerCase().indexOf('goodnight') >= 0) {
-        msg.channel.send(`Goodnight, <@${msg.author.id}>`);
-    }
+
     if (msg.content === '❤️') {
         msg.channel.send('❤️'); 
+    }
+    if (msg.content === 'I\'m a baa') {
+        msg.channel.send('baa'); 
     }
     console.log(`${msg.author.username}#${msg.author.discriminator}: ${msg.content}`);
 });
