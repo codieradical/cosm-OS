@@ -8,15 +8,15 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     if (msg.author.id === client.user.id) return;
-    
-    if (msg.content.toLowerCase().indexOf('goodnight') >= 0) {
-        msg.channel.send(`Goodnight, <@${msg.author.id}>`);
-    }
+
     if (msg.content === '❤️') {
         msg.channel.send('❤️'); 
     }
     if (msg.content === 'cosm-os') {
         msg.channel.send('hello, friend');
+    }
+    if (msg.content.toLowerCase().replace('\'', '') === 'im a baa') {
+        msg.channel.send('baa'); 
     }
     console.log(`${msg.author.username}#${msg.author.discriminator}: ${msg.content}`);
 });
