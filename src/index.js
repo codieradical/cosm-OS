@@ -15,6 +15,9 @@ client.on('message', msg => {
     if (msg.content === '❤️') {
         msg.channel.send('❤️'); 
     }
+    if (msg.content === 'cosm-os') {
+        msg.channel.send('hello, friend');
+    }
     console.log(`${msg.author.username}#${msg.author.discriminator}: ${msg.content}`);
 });
 
