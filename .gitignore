@@ -105,3 +105,6 @@ dist
 
 # Enrivonment Files
 .env
+
+# Webcam
+tmp/
