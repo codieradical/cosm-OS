@@ -1,14 +1,18 @@
 const _ = require('underscore');
+const client = require('../client');
+const events = require('../events');
 
 var selectedIndex = 0;
 var serverId = undefined;
 var channelId = undefined;
-var client = undefined;
-var resolve = undefined;
 
-function enterSelection(_client) {
-    client = _client;
+events.on('message', message => {
+    if(channelId && message.channel.id === channelId) {
+      console.log(`${message.author.username}#${message.author.discriminator}: ${message.content}`); 
+    }
+});
 
+function enterSelection() {
     var stdin = process.stdin;
     stdin.setRawMode(true);
     stdin.resume();
@@ -16,22 +20,15 @@ function enterSelection(_client) {
 
     selectionChanged(null)
     stdin.on('data', selectionChanged);
-
-    return new Promise(function(_resolve) {
-        resolve = _resolve;
-    });
 }
 
 function exitSelection() {
     var stdin = process.stdin;
     stdin.setRawMode(false);
-    stdin.pause();
     stdin.removeListener('data', selectionChanged);
-    resolve(channelId)
-    //stdin.setEncoding('utf8');
-
-    //selectionChanged(null)
-    //stdin.on('data', selectionChanged);
+    stdin.on('data', data => {
+      client.channels.get(channelId).send(data)
+    });
 }
 
 function selectionChanged(key) {
