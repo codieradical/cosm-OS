@@ -14,17 +14,21 @@ if (!fs.existsSync(dir)){
 events.on('command', async message => {
     switch(message.commandName) {
         case 'web': {
-            const filename = await takePhoto();
-            const attachment = new Discord.Attachment(filename);
-            const embed = new Discord.RichEmbed()
-                .setColor(0xFFFFFF)
-                .setTitle("Heeeeere's Codie")
-                .attachFile(attachment)
-                .setImage('attachment://' + path.basename(filename));
-        
-            await message.channel.send(embed);
-
-            //fs.unlink(filename, () => {});
+            try {
+                const filename = await takePhoto();
+                const attachment = new Discord.Attachment(filename);
+                const embed = new Discord.RichEmbed()
+                    .setColor(0xFFFFFF)
+                    .setTitle("Heeeeere's Codie")
+                    .attachFile(attachment)
+                    .setImage('attachment://' + path.basename(filename));
+            
+                await message.channel.send(embed);
+            } catch(err) {
+                message.channel.send("Oh oh! Stinky! Webcam is probably off :(");
+            } finally {
+                //fs.unlink(filename, () => {});
+            }
             return;
         }
         case 'lexi': {
