@@ -19,7 +19,10 @@ var userSchema = new mongoose.Schema({
     },
     allowanceBegan: Number,
     allowanceLastUpdate: Number,
-    currency: String,
+    currency: {
+        type: String,
+        default: '',
+    },
     balance: {
         type: Number,
         required: true,
@@ -30,6 +33,11 @@ var userSchema = new mongoose.Schema({
         required: true,
         default: 0,
     },
+    shopping: {
+        type: [String],
+        required: true,
+        default: [],
+    }
   });
 
 var User = mongoose.model('User', userSchema);
