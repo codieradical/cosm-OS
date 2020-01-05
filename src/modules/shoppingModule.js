@@ -2,29 +2,36 @@ const events = require('../events')
 const { getUserByDiscordId } = require('../database');
 
 events.on('command', async message => {
-    if (message.commandName === 'help') {
-        message.author.send(`**Shopping:**
-    shopping add
-    \    Add an item to your shopping list.
-    shopping remove
-    \    Remove an item from your shopping list.
-    shopping list (or slist)
-    \    Display your shopping list.
-    shopping clear
-    \    Empty your shopping list.
-        `);
+    switch(message.commandName) {
+        case '?':
+        case 'help': {
+            message.author.send(`
+**Shopping:**
+*These commands can also be accessed using the alias "s"*
+__shopping add__
+    Add an item to your shopping list.
+__shopping remove__
+    Remove an item from your shopping list.
+__shopping list__ (or just "__shopping__")
+    Display your shopping list.
+__shopping clear__
+    Empty your shopping list.
+            `);
+            return;
+        }
+        default:
+            return;
+        case 'shopping':
+        case 's':
+            break;
     }
-
-    if (message.commandName === 'slist') {
-        message.commandBody = 'list ' + message.commandBody;
-        message.commandName = 'shopping';
-    }
-
-    if (message.commandName !== 'shopping')
-        return;
 
     message.commandName = message.commandBody.getFirstWord();
     message.commandBody = message.commandBody.substring(message.commandName.length + 1);
+
+    if(message.commandName.isWhitespace()) {
+        message.commandName = 'list';
+    }
 
     switch(message.commandName) {
         case 'add': {

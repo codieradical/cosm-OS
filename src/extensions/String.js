@@ -5,3 +5,11 @@ Object.defineProperty(String.prototype, "getFirstWord", {
     writable: true,
     configurable: true
 });
+
+Object.defineProperty(String.prototype, "isWhitespace", {
+    value: function isWHitespace() {
+        return !/\S/.test(this)
+    },
+    writable: true,
+    configurable: true
+})

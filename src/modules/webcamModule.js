@@ -13,6 +13,19 @@ if (!fs.existsSync(dir)){
 
 events.on('command', async message => {
     switch(message.commandName) {
+        case '?':
+        case 'help': {
+            message.author.send(`
+**Webcam:**
+__web__
+    Returns a photo from the connected webcam.
+__lexi__
+    Returns a photo of Lexi.
+            `);
+            return;
+        }
+
+        case 'cam':
         case 'web': {
             try {
                 const filename = await takePhoto();

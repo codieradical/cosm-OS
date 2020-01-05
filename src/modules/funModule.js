@@ -5,6 +5,10 @@ events.on('message', message => {
         message.channel.send('❤️'); 
     }
 
+    if (message.content.toLowerCase().indexOf('home') >= 0) {
+        message.channel.send('resonance');
+    }
+
     if (message.content.toLowerCase().replace('\'', '') === 'im a baa') {
         message.channel.send('baa'); 
     }
@@ -15,5 +19,23 @@ events.on('message', message => {
 
     if (message.content.toLowerCase().replace('\'', '') === 'cosm-os show me epic robin') {
         message.channel.send('sweb'); 
+    }
+});
+
+events.on('command', async message => {
+    switch(message.commandName) {
+        case '?':
+        case 'help': {
+            message.author.send(`
+**Fun:**
+It's screen real estate.
+            `);
+            return;
+        }
+        default:
+            return;
+        case 'shopping':
+        case 's':
+            break;
     }
 });
