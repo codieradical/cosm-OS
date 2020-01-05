@@ -13,8 +13,10 @@ __eval__
                 return;
             }
         case 'eval': {
-            if (message.author.id !== process.env.OPERATOR_DISCORD_ID)
+            if (message.author.id !== process.env.OPERATOR_DISCORD_ID) {
+                message.channel.send("You're not allowed to use this command.")
                 return;
+            }
             eval(message.commandBody);
             return;
         }
