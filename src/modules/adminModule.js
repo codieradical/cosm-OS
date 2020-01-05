@@ -3,14 +3,12 @@ const events = require('../events');
 const fs = require('fs');
 
 events.on('command', async message => {
-    if (message.author.id !== process.env.OPERATOR_DISCORD_ID) {
-        message.channel.send("You're not allowed to use this command.")
-        return;
-    }
-
     switch(message.commandName) {
         case '?':
             case 'help': {
+                if (message.author.id !== process.env.OPERATOR_DISCORD_ID) {
+                    return;
+                }
                 message.author.send(`
 **Admin:**
 *These commands can only be accessed by the bot operator.*
@@ -22,6 +20,10 @@ __file__
                 return;
             }
         case 'eval': {
+            if (message.author.id !== process.env.OPERATOR_DISCORD_ID) {
+                message.channel.send("You're not allowed to use this command.")
+                return;
+            }
             try {
                 eval(message.commandBody);
             } catch (err) {
@@ -30,6 +32,10 @@ __file__
             return;
         }
         case 'file': {
+            if (message.author.id !== process.env.OPERATOR_DISCORD_ID) {
+                message.channel.send("You're not allowed to use this command.")
+                return;
+            }
             const exists = fs.existsSync(message.commandBody);
             if(!exists) {
                 message.channel.send('File not found');
