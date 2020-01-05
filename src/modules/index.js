@@ -1,6 +1,6 @@
 const events = require('../events');
 
-require('./evalModule');
+require('./adminModule');
 require('./moneyModule');
 require('./funModule');
 require('./shoppingModule');
