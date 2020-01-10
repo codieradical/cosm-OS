@@ -17,7 +17,7 @@ events.on('message', message => {
         commandOffset++;
     }
 
-    var commandName = message.content.substring(commandOffset).getFirstWord();
+    var commandName = message.content.substring(commandOffset).getFirstWord().toLowerCase();
     var commandBody = message.content.substring(commandName.length + commandOffset + 1);
 
     switch(commandName) {
