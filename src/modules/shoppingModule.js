@@ -42,6 +42,7 @@ __shopping clear__
             message.channel.send(`Added ${message.commandBody} to your shopping list.`);
             return;
         }
+        case 'rem':
         case 'remove': {
             const user = await getUserByDiscordId(message.author.id);
             const items = message.commandBody.split(new RegExp(', |,', 'g'));

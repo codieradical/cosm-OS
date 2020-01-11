@@ -96,7 +96,8 @@ __savings__
                     * user.allowanceInterval
                 );
             const nextDate = new Date(nextUpdate);
-            message.channel.send(`You have ${user.currency}${user.balance} remaining until ${nextDate.toDateString()}.`);
+            const perDay = (user.balance / (user.allowanceInterval / (24 * 60 * 60 * 1000))).toFixed(2);
+            message.channel.send(`You have ${user.currency}${user.balance} ${user.allowanceInterval !== 1 ? `(${user.currency}${perDay} per day)` : ''} remaining until ${nextDate.toDateString()}.`);
             return;
         }
         case 'saved':
