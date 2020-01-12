@@ -79,7 +79,7 @@ __savings__
             await updateMoney(user);
             user.balance -= Number.parseFloat(message.commandBody);
             await user.save();
-            message.channel.send(`Spent ${user.currency}${Number.parseFloat(message.commandBody)}. Remaining balance: ${user.currency}${user.balance}`);
+            message.channel.send(`Spent ${user.currency}${Number.parseFloat(message.commandBody)}. Remaining balance: ${user.currency}${user.balance.toFixed(2)}`);
             return;
         }
         case 'bal':
@@ -111,7 +111,7 @@ __savings__
                         ) / (24 * 60 * 60 * 1000)
                     )
                 ).toFixed(2)
-            message.channel.send(`You have ${user.currency}${user.balance} ${user.allowanceInterval !== 1 ? `(${user.currency}${perDay} per day)` : ''} remaining until ${nextDate.toDateString()}.`);
+            message.channel.send(`You have ${user.currency}${user.balance.toFixed(2)} ${user.allowanceInterval !== 1 ? `(${user.currency}${perDay} per day)` : ''} remaining until ${nextDate.toDateString()}.`);
             return;
         }
         case 'saved':
