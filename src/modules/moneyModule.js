@@ -96,7 +96,21 @@ __savings__
                     * user.allowanceInterval
                 );
             const nextDate = new Date(nextUpdate);
-            const perDay = (user.balance / (user.allowanceInterval / (24 * 60 * 60 * 1000))).toFixed(2);
+            const lastUpdateIntervalBegan =
+            user.allowanceBegan + (
+                Math.floor((user.allowanceLastUpdate - user.allowanceBegan) / user.allowanceInterval) // Get the amount of iterations so far (0)
+                * user.allowanceInterval
+            );
+            const perDay = 
+                (
+                    user.balance / 
+                    Math.ceil(
+                        (
+                            user.allowanceInterval - // allowance interval in ms
+                            ( new Date().getTime() - lastUpdateIntervalBegan) // ms since last update
+                        ) / (24 * 60 * 60 * 1000)
+                    )
+                ).toFixed(2)
             message.channel.send(`You have ${user.currency}${user.balance} ${user.allowanceInterval !== 1 ? `(${user.currency}${perDay} per day)` : ''} remaining until ${nextDate.toDateString()}.`);
             return;
         }
