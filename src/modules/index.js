@@ -4,7 +4,7 @@ require('./adminModule');
 require('./moneyModule');
 require('./funModule');
 require('./shoppingModule');
-//require('./webcamModule');
+require('./webcamModule');
 
 const prefix = '>';
 

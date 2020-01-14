@@ -77,6 +77,10 @@ async function takePhoto() {
 
     //Creates webcam instance
     var Webcam = NodeWebcam.create( options );
+
+    if (process.platform === "linux") {
+	    Webcam = new NodeWebcam.FSWebcam(options)
+	}
     
     //Will automatically append location output type
     return await new Promise((res, rej) => {
@@ -86,17 +90,23 @@ async function takePhoto() {
                 rej(err);
             }
             else {
-                const bmppath = path.dirname(data) + path.basename(data).replace('.jpg', '.bmp');
-                fs.renameSync(data, bmppath);
-                Jimp.read(bmppath, async function (err, image) {
-                    if (err) {
-                      console.log(err)
-                    } else {
-                      await image.writeAsync(data)
-                      fs.unlink(bmppath, () => {});
-                      res(data);
-                    }
-                  })
+                // Windows Skull-fuckery
+                if (process.platform === "win32") {
+                    const bmppath = path.dirname(data) + path.basename(data).replace('.jpg', '.bmp');
+                    fs.renameSync(data, bmppath);
+                    Jimp.read(bmppath, async function (err, image) {
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            await image.writeAsync(data)
+                            fs.unlink(bmppath, () => {});
+                            res(data);
+                        }
+                    })
+                }
+                else {
+                    res(data);
+                }
             }
         });
     })
