@@ -5,10 +5,6 @@ events.on('message', message => {
         message.channel.send('❤️'); 
     }
 
-    if (message.content.toLowerCase().indexOf('home') >= 0) {
-        message.channel.send('resonance');
-    }
-
     if (message.content.toLowerCase().replace('\'', '') === 'im a baa') {
         message.channel.send('baa'); 
     }
