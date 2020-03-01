@@ -3,4 +3,4 @@ const app = express();
 
 app.get('/', (req, res) => res.send('Welcome to Cosm-OS.'))
 
-app.listen(process.env.PORT, () => console.log(`Web server listening on ${port}.`))
+app.listen(process.env.PORT, () => console.log(`Web server listening on ${process.env.PORT}.`))
