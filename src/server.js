@@ -9,8 +9,8 @@ app.get('/', (req, res) => res.send('Welcome to Cosm-OS.'))
 app.post('/patreon/incoming', (req, res) => {
     client.channels.get(process.env.PATREON_CHANNEL_ID).send(
         "New Patreon Post\n" +
-        "**" + req.body.attributes.title + "**\n" +
-        "www.patreon.com/posts/" + req.body.id
+        "**" + req.body.data.attributes.title + "**\n" +
+        "www.patreon.com/posts/" + req.body.data.id
     )
     res.send();
 })
