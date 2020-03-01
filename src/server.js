@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const client = require('./client');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser);
 
 app.get('/', (req, res) => res.send('Welcome to Cosm-OS.'))
 
