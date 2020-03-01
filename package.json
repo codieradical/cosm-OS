@@ -19,6 +19,7 @@
   "dependencies": {
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "jimp": "^0.9.3",
     "mongoose": "^5.8.4",
     "node-webcam": "^0.5.0",

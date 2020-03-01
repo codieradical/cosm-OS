@@ -2,6 +2,7 @@ require('./extensions'); // prepare extension methods.
 require('./modules'); // prepare command modules.
 
 const client = require('./client');
+require('./server')
 const console = require('./console');
 
 console.log("Logging in to Discord...");
