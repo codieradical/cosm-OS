@@ -9,7 +9,8 @@ app.get('/', (req, res) => res.send('Welcome to Cosm-OS.'))
 app.post('/patreon/incoming', (req, res) => {
     console.log("Patreon Webhook Incoming", req.body.data)
     client.channels.get(process.env.PATREON_CHANNEL_ID).send(
-        "New Patreon Post\n" +
+        "@everyone\n" +
+        "New Patreon Post!\n" +
         "**" + req.body.data.attributes.title + "**\n" +
         "https://www.patreon.com/posts/" + req.body.data.id
     )
