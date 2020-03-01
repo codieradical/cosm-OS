@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const client = require('client');
+const client = require('./client');
 
 app.get('/', (req, res) => res.send('Welcome to Cosm-OS.'))
 
