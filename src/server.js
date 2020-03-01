@@ -5,8 +5,8 @@ const client = require('./client');
 app.get('/', (req, res) => res.send('Welcome to Cosm-OS.'))
 
 app.post('/patreon/incoming', (req, res) => {
-    console.log(req);
-    client.channels.get(process.env.PATREON_CHANNEL_ID).send(JSON.stringify(req));
+    console.log(req.body);
+    client.channels.get(process.env.PATREON_CHANNEL_ID).send(JSON.stringify(req.body));
     res.send();
 })
 
